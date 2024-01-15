@@ -1,14 +1,14 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+use std::rc::Rc;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+use spotlight_extension::{Entity, EntityType};
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+#[no_mangle]
+fn execute() -> Option<Entity> {
+    Some(Entity {
+        name: "test".to_string(),
+        description: Some("desc".to_string()),
+        alias: Some("alias".to_string()),
+        command: Rc::new(Box::new(|| Ok("IT WORKS !".to_string()))),
+        r#type: EntityType::Command,
+    })
 }
