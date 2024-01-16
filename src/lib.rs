@@ -1,29 +1,49 @@
-use std::rc::Rc;
+use abi_stable::{
+    export_root_module,
+    prefix_type::PrefixTypeTrait,
+    sabi_extern_fn,
+    std_types::{
+        ROption::{RNone, RSome},
+        RVec,
+    },
+};
+use spotlight_extension::{Plugin, Plugin_Ref, REntity};
 
-use anyhow::Result;
-use spotlight_extension::{dispose, entities, entry_point, Entity, EntityType};
-
-#[entry_point]
-fn init() -> Result<()> {
-    println!("Salut mon pote !");
-    Ok(())
+#[export_root_module]
+fn instantiate_root_module() -> Plugin_Ref {
+    Plugin {
+        entities,
+        on_entity_action,
+    }
+    .leak_into_prefix() // Converts the `MinMod` into `MinMod_Ref` and leaks it
 }
 
-#[entities]
-fn data() -> Result<Vec<Entity>> {
-    let entity = Entity {
-        name: "test".to_string(),
-        description: Some("desc".to_string()),
-        alias: Some("alias".to_string()),
-        command: Rc::new(Box::new(|| Ok("IT WORKS !".to_string()))),
-        r#type: EntityType::Command,
-    };
-
-    Ok(vec![entity])
+#[sabi_extern_fn]
+pub fn entities() -> RVec<REntity> {
+    vec![
+        REntity {
+            id: 0,
+            name: RSome("Firefox".into()),
+            description: RSome("Browser".into()),
+            alias: RNone,
+        },
+        REntity {
+            id: 1,
+            name: RSome("Chrome".into()),
+            description: RSome("Browser".into()),
+            alias: RNone,
+        },
+        REntity {
+            id: 2,
+            name: RSome("Vivaldi".into()),
+            description: RSome("Browser".into()),
+            alias: RNone,
+        },
+    ]
+    .into()
 }
 
-#[dispose]
-fn dispose() -> Result<()> {
-    println!("A+ mon pote !");
-    Ok(())
+#[sabi_extern_fn]
+pub fn on_entity_action(id: u64) {
+    println!("ENTITY ACTION: {}", id);
 }

@@ -4,9 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [lib]
-crate-type = ["dylib"]
+name = "plugin"
+crate-type = ["cdylib"]
 
 [dependencies]
 spotlight-extension = { git = "https://github.com/rspotlight/extension" }
 anyhow = "1.0.79"
 thiserror = "1.0.56"
+abi_stable = { version = "0.10", default-features = false }
