@@ -265,7 +265,7 @@ checksum = "2593d31f82ead8df961d8bd23a64c2ccf2eb5dd34b0a34bfb4dd54011c72009e"
 [[package]]
 name = "spotlight-extension"
 version = "0.1.0"
-source = "git+https://github.com/rspotlight/extension#6bcfb700f1194d01bf95de3cee6442e2a78769dd"
+source = "git+https://github.com/rspotlight/extension#e899ff65fb34458ef1d1b0e14069c830a118e3a6"
 dependencies = [
  "abi_stable",
 ]
