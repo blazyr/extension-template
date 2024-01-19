@@ -42,7 +42,7 @@ pub fn entities() -> RResult<RVec<REntity>, RBoxError> {
 
 #[sabi_extern_fn]
 pub fn on_mount() -> RResult<(), RBoxError> {
-    RErr(RBoxError::new(DataStoreError::Disconnect))
+    ROk(())
 }
 
 #[sabi_extern_fn]
