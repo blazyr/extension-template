@@ -3,9 +3,9 @@ use abi_stable::{
     prefix_type::PrefixTypeTrait,
     sabi_extern_fn,
     std_types::{
-        RBoxError,
+        RBoxError, ROption,
         RResult::{self, RErr, ROk},
-        RVec,
+        RStr, RVec,
     },
 };
 use spotlight_extension::{Plugin, Plugin_Ref, REntity};
@@ -51,7 +51,7 @@ pub fn on_dispose() -> RResult<(), RBoxError> {
 }
 
 #[sabi_extern_fn]
-pub fn on_entity_action(id: u64) -> RResult<(), RBoxError> {
-    println!("ENTITY ACTION: {}", id);
+pub fn on_entity_action(id: u64, arg: ROption<RStr>) -> RResult<(), RBoxError> {
+    println!("ENTITY ACTION: {}, {:?}", id, arg);
     ROk(())
 }
