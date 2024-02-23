@@ -79,6 +79,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
 
 [[package]]
+name = "blazyr-extension"
+version = "0.1.0"
+dependencies = [
+ "abi_stable",
+]
+
+[[package]]
 name = "cfg-if"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -111,7 +118,7 @@ version = "0.1.0"
 dependencies = [
  "abi_stable",
  "anyhow",
- "spotlight-extension",
+ "blazyr-extension",
  "thiserror",
 ]
 
@@ -261,13 +268,6 @@ name = "smallvec"
 version = "1.13.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e6ecd384b10a64542d77071bd64bd7b231f4ed5940fba55e98c3de13824cf3d7"
-
-[[package]]
-name = "spotlight-extension"
-version = "0.1.0"
-dependencies = [
- "abi_stable",
-]
 
 [[package]]
 name = "syn"
